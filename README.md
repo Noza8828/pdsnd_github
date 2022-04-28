@@ -12,7 +12,7 @@ This project aims to understand US bikeshare data and provides interactive stati
 ### Files used
 The following files are used during the Project:
 * Git Commands Documentation.pdf
-* Git-KeyTerms.pdf
+* Git Key Terms.pdf
 
 ### Credits
 Git Documentation: https://git-scm.com/doc
