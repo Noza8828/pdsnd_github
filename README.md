@@ -17,3 +17,4 @@ The following files are used during the Project:
 ### Credits
 Git Documentation: https://git-scm.com/doc
 Udacity Lectures
+W3 Schools: https://www.w3schools.com/git/
