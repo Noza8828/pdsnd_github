@@ -6,6 +6,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+#Function to identify the user requirements
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -55,7 +56,7 @@ def get_filters():
     print('-'*40)
     return city, month, day
 
-
+#Function to load data from .csv files
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
@@ -82,6 +83,7 @@ def load_data(city, month, day):
 
     return df
 
+#Function to calculate all the time-related statistics for the chosen data
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -101,10 +103,10 @@ def time_stats(df):
     common_hour = df['hour'].mode()[0]
     print(common_hour)
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('\nThis took %s seconds.' % (time.time() - start_time))
     print('-'*40)
 
-
+#Function to calculate station related statistics
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
@@ -124,10 +126,10 @@ def station_stats(df):
     common_combination = df['combination'].mode()[0]
     print(common_combination)
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('\nThis took %s seconds.' % (time.time() - start_time))
     print('-'*40)
 
-
+#Function for trip duration related statistics
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
@@ -145,7 +147,7 @@ def trip_duration_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-
+#Function to calculate user statistics
 def user_stats(df):
     """Displays statistics on bikeshare users."""
 
@@ -176,9 +178,41 @@ def user_stats(df):
     else:
         print('There is no birth year information in this city.')
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('\nThis took %s seconds.' % (time.time() - start_time))
     print('-'*40)
 
+
+#Function to display the raw data as per user request
+def display_data(df):
+    """Displays 5 rows of data for the selected city."""
+
+    response = ['yes', 'no']
+    data = ''
+
+    count = 0
+    while data not in response:
+        print('\nWould you like to view the raw data?')
+        print('\nPlease answer either \nYes or \nNo')
+        data = input().lower()
+        #the raw data from the df is displayed if user opts for it
+        if data == 'yes':
+            print(df.head())
+        elif data not in response:
+            print('\nPlease answer either Yes or No.')
+
+    #Extra while loop here to ask user if they want to continue viewing data
+    while data == 'yes':
+        print('Would you like to view more raw data?'')
+        count += 5
+        data = input().lower()
+        #If user opts for it, this displays next 5 rows of data
+        if data == 'yes':
+             print(df[count:count + 5])
+        elif data != 'yes':
+             break
+    print('-'*80)
+
+#Main function to call all the previous functions
 def main():
     while True:
         city, month, day = get_filters()
